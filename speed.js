@@ -1,30 +1,40 @@
+// write code here
+const readline = require("readline");
+// This function displays suitable message upon checking thje speed of the car.
+function speedChecker(speed) {
+  const speedLimit = 70; 
+  //authorized maximum speed in km/hr
+  const authorizedLimitPoints = 12; 
+  //12 is the maximum points one can attain for their license to be suspended.
+  const kmPerPoint = 5;
 
-
-  function calculateDemeritPoints(speed) {
-    const speedLimit = 70;
-    let demeritPoints = 0;
-  
-    if (speed > speedLimit) {
-      demeritPoints = Math.floor((speed - speedLimit) / 5);
-    }
-  
-    return demeritPoints;
-  }
-  
-  function main(speed) {
-    // const speed = parseInt(prompt("Enter the speed of the car (in km/h):"));
-  
-    const demeritPoints = calculateDemeritPoints(speed);
-  
-    if (demeritPoints > 0) {
-      console.log("Points:", demeritPoints);
-      if (demeritPoints > 12) {
-        console.log("License suspended");
-      }
+  if (speed <= speedLimit) {
+    return "OK"; 
+    //OK is displayed if the speed is within the limit
+  } else {
+    const points = Math.floor((speed - speedLimit) / kmPerPoint);
+    if (points > authorizedLimitPoints) {
+      return "License suspended"; 
+      //Implies that the driver is beyond the authorized demerits points of 12.
     } else {
-      console.log("Ok");
+      return "Points:" + points; 
+      //implies the driver is above authorized speed limit but has not exceeded the authorized demerit points of 12.
     }
   }
-  
-  
-  main(179)
+}
+
+const rl = readline.createInterface({
+  //
+  input: process.stdin, //This section here creates a user interface, enablingthe to interact with the system.
+  output: process.stdout, //
+}); //
+//After creating user interface, this part prompts the userto enter the speed of their car (This will happen after we run the program using node speedDetector.js)
+rl.question("Enter the speed of the car (km/h): ", (input) => {
+  const speed = parseFloat(input);
+  if (isNaN(speed)) {
+    console.log("Invalid input. Please enter a numeric value."); //This will display "Invalid Input" if the user inputs something which is not a number.
+  } else {
+    console.log(speedChecker(speed)); //The main function speedChecker is invokede to display the results. for example, if the driver inputs the speed of their car as 150, the system will take (150-70)/5 which is 16 point; implying that the authorized demerits points have been exceeded; hence the message "License Suspended"
+  }
+  rl.close(); 
+});
