@@ -1,42 +1,35 @@
-const readline = require("readline");
- //This imports the readline module from node.js,helping the user to interact with the commandline after runing the program.
 
-function studentGrader(marks) {
-  //Main function to determine the grade of a student according to their marks.
 
-  if (marks < 0 || marks > 100) {
-    //validates if marks are within the range of 0-100
-    return "Enter marks between 0 and 100.";
+ function calculateGrade(mark) {
+  // check if the mark is a valid number between 0 and 100
+  if (mark > 79) {
+    return 'A';
+  } else if (mark >= 60) {
+    return 'B';
+  } else if (mark >= 50) {
+    return 'C';
+  } else if (mark >= 40) {
+    return 'D';
   } else {
-    if (marks > 79) {
-      return "Congratulations, your grade is: A";
-    } else if (marks >= 60) {
-      return "Good trial, your grade is: B";
-    } else if (marks >= 50) {
-      return "Avarage,your grade is: C";
-    } else if (marks >= 40) {
-      return "Need to improve,your grade is: D";
-    } else {
-      return "See me, your grade is: E";
-    }
+    return 'E';
   }
 }
-// The readline interface prompts the student/teacher to enter their marks through the command line
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
 
-rl.question("Enter your marks: ", (input) => {
-  const marks = parseFloat(input);
+function studentGradeGenerator() {
+  // prompt the user to enter the student's mark
+  const mark = parseFloat(prompt('Enter the student mark (0-100):'));
 
-  if (isNaN(marks)) {
-    console.log("Invalid input. grade should be between 0-100"); 
-    //validates if an iput is a number
-  } else {
-    console.log(studentGrader(marks));
+  if (isNaN(mark) || mark < 0 || mark > 100) {
+    // return the student mark without the mark number 
+    return 'Invalid input. Please enter a valid mark between 0 and 100.';
   }
-  rl.close(); 
 
-});
-  
+  const grade = calculateGrade(mark);
+  // return the grade as a string
+  return `The student's grade is: ${grade}`;
+}
+
+
+const result = studentGradeGenerator();
+// get the results from studentGradeGenerator
+console.log(result);
