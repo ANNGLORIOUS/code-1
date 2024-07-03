@@ -68,8 +68,8 @@ function calculateNetSalary(basicSalary, benefits) {
 
 // Main function to get inputs and display the results
 function main() {
-  const basicSalary = parseFloat(("200000:"));
-  const benefits = parseFloat(("20000:"));
+  const basicSalary = parseFloat(prompt("enter basic salary:"));
+  const benefits = parseFloat(prompt("enter the benefits:"));
 
   const {
     grossSalary,

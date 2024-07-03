@@ -37,6 +37,6 @@ rl.question("Enter your marks: ", (input) => {
     console.log(studentGrader(marks));
   }
   rl.close(); 
-  //closing the readline
+
 });
   

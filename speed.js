@@ -1,11 +1,11 @@
 // write code here
 const readline = require("readline");
-// This function displays suitable message upon checking thje speed of the car.
+// This function displays suitable message upon checking the speed of the car.
 function speedChecker(speed) {
   const speedLimit = 70; 
-  //authorized maximum speed in km/hr
+  //maximum speed in km/hr
   const authorizedLimitPoints = 12; 
-  //12 is the maximum points one can attain for their license to be suspended.
+  //12 is the maximum points that one can attain for their license to be suspended.
   const kmPerPoint = 5;
 
   if (speed <= speedLimit) {
@@ -25,16 +25,19 @@ function speedChecker(speed) {
 
 const rl = readline.createInterface({
   //
-  input: process.stdin, //This section here creates a user interface, enablingthe to interact with the system.
-  output: process.stdout, //
-}); //
+  input: process.stdin, 
+  //This section here creates a user interface, enablingthe to interact with the system.
+  output: process.stdout, 
+}); 
 //After creating user interface, this part prompts the userto enter the speed of their car (This will happen after we run the program using node speedDetector.js)
 rl.question("Enter the speed of the car (km/h): ", (input) => {
   const speed = parseFloat(input);
   if (isNaN(speed)) {
-    console.log("Invalid input. Please enter a numeric value."); //This will display "Invalid Input" if the user inputs something which is not a number.
+    console.log("Invalid input. Please enter a numeric value."); 
+    //This will display "Invalid Input" if the user inputs something which is not a number.
   } else {
-    console.log(speedChecker(speed)); //The main function speedChecker is invokede to display the results. for example, if the driver inputs the speed of their car as 150, the system will take (150-70)/5 which is 16 point; implying that the authorized demerits points have been exceeded; hence the message "License Suspended"
+    console.log(speedChecker(speed)); 
+    //The main function speedChecker is invokede to display the results.
   }
   rl.close(); 
 });
